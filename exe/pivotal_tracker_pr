@@ -1,3 +1,0 @@
-#!/usr/bin/env ruby
-
-require "pivotal_tracker_pr"
