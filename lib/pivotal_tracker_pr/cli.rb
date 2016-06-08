@@ -18,7 +18,7 @@ module PivotalTrackerPr
         story_name = get_story_name(story_id)
         say "Story name : #{story_name}", :green
 
-        write_pull_request_template
+        write_pull_request_template story_id, story_name
       end
 
       system 'hub pull-request --browse'
