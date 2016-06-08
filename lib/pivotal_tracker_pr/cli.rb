@@ -39,7 +39,13 @@ module PivotalTrackerPr
       https.use_ssl = true
 
       response = https.get(url.path, 'X-TrackerToken' => ENV['PT_TOKEN'])
-      response.code == 200 ? JSON(response.body)['name'] : nil
+      case response
+      when Net::HTTPSuccess
+        JSON(response.body)['name']
+      else
+        say response.body, :red
+        nil
+      end
     end
 
     def check_env_vars
