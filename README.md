@@ -1,28 +1,22 @@
 # PivotalTrackerPr
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/pivotal_tracker_pr`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+- `PivotalTracker`のストリーIDとストリー名を取得し、カレントブランチの`PullRequest`を作成する
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
 ```ruby
-gem 'pivotal_tracker_pr'
+$ gem install pivotal_tracker_pr
 ```
 
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install pivotal_tracker_pr
-
 ## Usage
+- 下記の環境変数を設定しておく
+  - `PT_TOKEN`：`PivotalTracker`のアクセストークン
+  - `PT_PROJECT_ID`：`PivotalTracker`のプロジェクトID
+- ブランチを作成するとき、`PivotalTracker`のストリーIDを含めるように命名する
+- `git commit; git push`の後、`PullRequest`を作ろうとするタイミングで、`pivotal_tracker_pr create`を実行する
 
-TODO: Write usage instructions here
+## TODO
+- [ ] PullRequestのテンプレートをERBに切り出す
+- [ ] ストリーIDのパラメータを受け取る
 
 ## Development
 
@@ -32,5 +26,4 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/pivotal_tracker_pr.
-
+Bug reports and pull requests are welcome on GitHub at https://github.com/blueplanet/pivotal_tracker_pr.
