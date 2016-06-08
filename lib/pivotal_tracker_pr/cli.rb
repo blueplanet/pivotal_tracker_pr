@@ -11,7 +11,7 @@ module PivotalTrackerPr
     def create
       story_id = parse_story_id
       if story_id
-        say "StoryId : #{story_id}"
+        say "StoryId : #{story_id}", :green
 
         check_env_vars
 
@@ -21,9 +21,8 @@ module PivotalTrackerPr
         write_pull_request_template story_id, story_name
       end
 
+      say 'Done.'
       system 'hub pull-request --browse'
-
-      say 'Done.', :green
     end
 
     private
