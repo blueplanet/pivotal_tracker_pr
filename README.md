@@ -1,5 +1,8 @@
 # PivotalTrackerPr
 - `PivotalTracker`のストリーIDとストリー名を取得し、カレントブランチの`PullRequest`を作成する
+- 作成したPRの内容
+  - ![PullRequest command](https://raw.github.com/wiki/blueplanet/pivotal_tracker_pr/images/pt_pr_cmd.png)
+  - ![PullRequest github](https://raw.github.com/wiki/blueplanet/pivotal_tracker_pr/images/pt_pr_github.png)
 
 ## Installation
 
