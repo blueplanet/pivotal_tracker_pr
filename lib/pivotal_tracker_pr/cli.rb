@@ -5,6 +5,7 @@ require 'thor'
 
 module PivotalTrackerPr
   PULL_REQUEST_MESSAGE = 'PULLREQ_EDITMSG'.freeze
+  MESSAGE_TEMPLATE = 'PULLREQ_MSG_TEMPLATE'.freeze
 
   class CLI < Thor
     desc 'create', 'Generate pull request use story id / story name.'
@@ -60,15 +61,34 @@ module PivotalTrackerPr
     end
 
     def write_pull_request_template(story_id, story_name)
-      open(pull_request_message, 'w') do |file|
-        file.puts "[fixed ##{story_id}]#{story_name}"
-        file.puts "\n"
-        file.puts "https://www.pivotaltracker.com/story/show/#{story_id}"
+      message_context = if File.exists?(message_template_path)
+        message_from_template(story_id, story_name)
+      else
+        default_message
       end
+
+      open(pull_request_message, 'w') { |file| file.puts message_context }
+    end
+
+    def message_template_path
+      File.join(Dir.pwd, '.git', MESSAGE_TEMPLATE)
+    end
+
+    def message_from_template(story_id, story_name)
+      template_content = File.open(message_template_path).read
+      template_content.gsub('{{STORY_ID}}', story_id).gsub('{{STORY_NAME}}')
     end
 
     def pull_request_message
       File.join(Dir.pwd, '.git', PULL_REQUEST_MESSAGE)
+    end
+
+    def default_message(story_id, story_name)
+      <<~EOF
+        "[fixed ##{story_id}]#{story_name}"
+        "\n"
+        "https://www.pivotaltracker.com/story/show/#{story_id}"
+      EOF
     end
   end
 end
