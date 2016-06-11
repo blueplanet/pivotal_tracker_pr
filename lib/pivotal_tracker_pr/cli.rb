@@ -4,7 +4,7 @@ require 'net/http'
 require 'thor'
 
 module PivotalTrackerPr
-  PULL_REQUEST_TEMPLATE = 'PULLREQ_EDITMSG'.freeze
+  PULL_REQUEST_MESSAGE = 'PULLREQ_EDITMSG'.freeze
 
   class CLI < Thor
     desc 'create', 'Generate pull request use story id / story name.'
@@ -21,7 +21,6 @@ module PivotalTrackerPr
         write_pull_request_template story_id, story_name
       end
 
-      say 'Done.'
       system 'hub pull-request --browse'
     end
 
@@ -61,15 +60,15 @@ module PivotalTrackerPr
     end
 
     def write_pull_request_template(story_id, story_name)
-      open(template_path, 'w') do |file|
+      open(pull_request_message, 'w') do |file|
         file.puts "[fixed ##{story_id}]#{story_name}"
         file.puts "\n"
         file.puts "https://www.pivotaltracker.com/story/show/#{story_id}"
       end
     end
 
-    def template_path
-      File.join(Dir.pwd, '.git', PULL_REQUEST_TEMPLATE)
+    def pull_request_message
+      File.join(Dir.pwd, '.git', PULL_REQUEST_MESSAGE)
     end
   end
 end
