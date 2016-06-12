@@ -85,9 +85,9 @@ module PivotalTrackerPr
 
     def default_message(story_id, story_name)
       <<~EOF
-        "[fixed ##{story_id}]#{story_name}"
-        "\n"
-        "https://www.pivotaltracker.com/story/show/#{story_id}"
+        [fixed ##{story_id}]#{story_name}
+
+        https://www.pivotaltracker.com/story/show/#{story_id}
       EOF
     end
   end
