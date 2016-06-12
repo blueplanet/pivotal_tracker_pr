@@ -30,10 +30,6 @@ $ gem install pivotal_tracker_pr
 |{{STORY_NAME}}|ストリー内容|
 |{{STORY_LINK}}|ストリーのリンク|
 
-## TODO
-- [ ] PullRequestのテンプレートをERBに切り出す
-- [ ] ストリーIDのパラメータを受け取る
-
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment. Run `bundle exec pivotal_tracker_pr` to use the gem in this directory, ignoring other installed copies of this gem.

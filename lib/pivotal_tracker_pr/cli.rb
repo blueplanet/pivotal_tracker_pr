@@ -8,9 +8,10 @@ module PivotalTrackerPr
   MESSAGE_TEMPLATE = 'PULLREQ_MSG_TEMPLATE'.freeze
 
   class CLI < Thor
+    default_command :create
     desc 'create', 'Generate pull request use story id / story name.'
-    def create
-      story_id = parse_story_id
+    def create(story_id = nil)
+      story_id ||= parse_story_id
       if story_id
         say "StoryId : #{story_id}", :green
 
