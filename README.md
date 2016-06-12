@@ -1,24 +1,34 @@
 # PivotalTrackerPr
 - `PivotalTracker`のストリーIDとストリー名を取得し、カレントブランチの`PullRequest`を作成する
 
-## Installation
+## インストール
 
 ```ruby
 $ gem install pivotal_tracker_pr
 ```
 
-## Usage
+## 使い方
 - 下記の環境変数を設定しておく
   - `PT_TOKEN`：`PivotalTracker`のアクセストークン
   - `PT_PROJECT_ID`：`PivotalTracker`のプロジェクトID
 - ブランチを作成するとき、`PivotalTracker`のストリーIDを含めるように命名する
 - `git commit; git push`の後、`PullRequest`を作ろうとするタイミングで、`pivotal_tracker_pr create`を実行する
 
-## 作成した内容
+### PullRequest内容
+- デフォルト内容
+
 |コマンド実行後|githubで作成した内容|  
 |--------------|--------------------|
 |![PullRequest command](https://raw.github.com/wiki/blueplanet/pivotal_tracker_pr/images/pt_pr_cmd.png)|![PullRequest github](https://raw.github.com/wiki/blueplanet/pivotal_tracker_pr/images/pt_pr_github.png)|
 
+- カスタマイズしたい場合は、`.git/PULLREQ_MSG_TEMPLATE`ファイルに内容を書き出しておけば使われます。
+  - 下記の文字列が置換される
+
+|置換文字列|置換後の内容|  
+|--------------|--------------------|
+|{{STORY_ID}}|ストリーのID|
+|{{STORY_NAME}}|ストリー内容|
+|{{STORY_LINK}}|ストリーのリンク|
 
 ## TODO
 - [ ] PullRequestのテンプレートをERBに切り出す
