@@ -61,11 +61,12 @@ module PivotalTrackerPr
     end
 
     def write_pull_request_template(story_id, story_name)
-      message_context = if File.exists?(message_template_path)
-        message_from_template(story_id, story_name)
-      else
-        default_message
-      end
+      message_context =
+        if File.exists?(message_template_path)
+          message_from_template(story_id, story_name)
+        else
+          default_message
+        end
 
       open(pull_request_message, 'w') { |file| file.puts message_context }
     end
@@ -76,7 +77,7 @@ module PivotalTrackerPr
 
     def message_from_template(story_id, story_name)
       template_content = File.open(message_template_path).read
-      template_content.gsub('{{STORY_ID}}', story_id).gsub('{{STORY_NAME}}')
+      template_content.gsub('{{STORY_ID}}', story_id).gsub('{{STORY_NAME}}', story_name).gsub('{{STORY_LINK}}', story_link(story_id))
     end
 
     def pull_request_message
@@ -85,10 +86,14 @@ module PivotalTrackerPr
 
     def default_message(story_id, story_name)
       <<~EOF
-        "[fixed ##{story_id}]#{story_name}"
-        "\n"
-        "https://www.pivotaltracker.com/story/show/#{story_id}"
+        [fixed ##{story_id}]#{story_name}
+
+        #{story_link story_id}
       EOF
+    end
+
+    def story_link(story_id)
+      "https://www.pivotaltracker.com/story/show/#{story_id}"
     end
   end
 end
