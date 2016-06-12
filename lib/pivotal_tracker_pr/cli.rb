@@ -76,7 +76,7 @@ module PivotalTrackerPr
 
     def message_from_template(story_id, story_name)
       template_content = File.open(message_template_path).read
-      template_content.gsub('{{STORY_ID}}', story_id).gsub('{{STORY_NAME}}')
+      template_content.gsub('{{STORY_ID}}', story_id).gsub('{{STORY_NAME}}', story_name)
     end
 
     def pull_request_message
