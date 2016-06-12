@@ -11,8 +11,10 @@ $ gem install pivotal_tracker_pr
 - 下記の環境変数を設定しておく
   - `PT_TOKEN`：`PivotalTracker`のアクセストークン
   - `PT_PROJECT_ID`：`PivotalTracker`のプロジェクトID
-- ブランチを作成するとき、`PivotalTracker`のストリーIDを含めるように命名する
-- `git commit; git push`の後、`PullRequest`を作ろうとするタイミングで、`pivotal_tracker_pr create`を実行する
+- `git commit; git push`の後、`PullRequest`を作ろうとするタイミングで、`pivotal_tracker_pr create [STORY_ID]`を実行する
+  - `STORY_ID`は、`PivotalTracker`のストリーIDの値になります。
+  - `STORY_ID`が指定されてない場合、`git`のカレントブランチ名から数値の部分を検索しストリーIDとして使われる
+  - それでもストリーIDが取得出来なかった場合は、単に`hub pull-request --browse`を呼び出すだけ
 
 ### PullRequest内容
 - デフォルト内容

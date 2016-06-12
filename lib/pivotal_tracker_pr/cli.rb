@@ -9,7 +9,7 @@ module PivotalTrackerPr
 
   class CLI < Thor
     default_command :create
-    desc 'create', 'Generate pull request use story id / story name.'
+    desc 'create [STORY_ID]', 'Create pull request use story id / story name of PivotalTracker.'
     def create(story_id = nil)
       story_id ||= parse_story_id
       if story_id
