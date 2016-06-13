@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/blueplanet/pivotal_tracker_pr.png?label=ready&title=Ready)](https://waffle.io/blueplanet/pivotal_tracker_pr)
 # PivotalTrackerPr
 - `PivotalTracker`のストリーIDとストリー名を取得し、カレントブランチの`PullRequest`を作成する
 
