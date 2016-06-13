@@ -13,7 +13,7 @@ module PivotalTrackerPr
     def create(story_id = nil)
       story_id ||= parse_story_id
       if story_id
-        say "StoryId : #{story_id}", :green
+        say "story id : #{story_id}", :green
 
         check_env_vars
 
