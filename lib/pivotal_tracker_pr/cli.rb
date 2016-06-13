@@ -18,9 +18,10 @@ module PivotalTrackerPr
         check_env_vars
 
         story_name = get_story_name(story_id)
-        say "Story name : #{story_name}", :green
-
-        write_pull_request_template story_id, story_name
+        if story_name
+          say "Story name : #{story_name}", :green
+          write_pull_request_template story_id, story_name
+        end
       end
 
       system 'hub pull-request --browse'
@@ -44,7 +45,9 @@ module PivotalTrackerPr
       when Net::HTTPSuccess
         JSON(response.body)['name']
       else
-        say response.body, :red
+        say 'Please check story id for following message:', :red
+        say JSON(response.body)['error'] || response.body, :red
+
         nil
       end
     end
