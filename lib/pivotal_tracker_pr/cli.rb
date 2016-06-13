@@ -39,6 +39,8 @@ module PivotalTrackerPr
       url = URI.parse("https://www.pivotaltracker.com/services/v5/projects/#{ENV['PT_PROJECT_ID']}/stories/#{story_id}")
       https = Net::HTTP.new(url.host, 443)
       https.use_ssl = true
+      https.open_timeout = 5
+      https.read_timeout = 5
 
       response = https.get(url.path, 'X-TrackerToken' => ENV['PT_TOKEN'])
       case response
@@ -50,6 +52,12 @@ module PivotalTrackerPr
 
         nil
       end
+    rescue Timeout::Error
+      say 'Timeout::Error, Please check network', :red
+      nil
+    rescue => e
+      say e.message, :red
+      nil
     end
 
     def check_env_vars
