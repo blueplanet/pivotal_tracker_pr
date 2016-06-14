@@ -7,6 +7,9 @@ RSpec.describe PivotalTrackerPr::CLI do
 
     system 'git init; touch test.rb; git add .; git commit -m init'
     system 'git checkout -b test-111'
+
+    ENV['PT_TOKEN'] = 'PT_TOKEN'
+    ENV['PT_PROJECT_ID'] = 'PT_PROJECT_ID'
   end
 
   let(:cli) { PivotalTrackerPr::CLI.new }
@@ -24,7 +27,7 @@ RSpec.describe PivotalTrackerPr::CLI do
     end
 
     context 'story_id is present'  do
-      let(:story_id) { 123 }
+      let(:story_id) { '123' }
       it 'should be call say method' do
         expect(cli).to receive(:get_story_name).with('123').and_return('123 name')
         expect(cli).to receive(:write_pull_request_template).with('123', '123 name')
