@@ -25,6 +25,11 @@ RSpec.describe PivotalTrackerPr::CLI do
 
     context 'story_id is present'  do
       let(:story_id) { 123 }
+      it 'should be call say method' do
+        expect(cli).to receive(:get_story_name).with('123').and_return('123 name')
+        expect(cli).to receive(:write_pull_request_template).with('123', '123 name')
+        subject
+      end
     end
   end
 end
