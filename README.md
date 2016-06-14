@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/blueplanet/pivotal_tracker_pr.svg?branch=master)](https://travis-ci.org/blueplanet/pivotal_tracker_pr)
+
 # PivotalTrackerPr
 - `PivotalTracker`のストリーIDとストリー名を取得し、カレントブランチの`PullRequest`を作成する
 
