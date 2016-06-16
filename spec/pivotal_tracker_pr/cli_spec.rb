@@ -2,12 +2,15 @@ require 'spec_helper'
 
 RSpec.describe PivotalTrackerPr::CLI do
   let(:cli) { PivotalTrackerPr::CLI.new }
-  before { allow(cli).to receive(:say).and_return(true) }
+  before do
+    ENV['PT_TOKEN'] = 'PT_TOKEN'
+    ENV['PT_PROJECT_ID'] = 'PT_PROJECT_ID'
+  end
 
   describe '#create' do
     subject { cli.create story_id }
 
-    context 'story_id is nil' do
+    context 'param of story_id is nil' do
       let(:story_id) { nil }
 
       context 'parsed story id is present' do
@@ -17,7 +20,6 @@ RSpec.describe PivotalTrackerPr::CLI do
           before { expect(cli).to receive(:get_story_name).with('111').and_return('111 name') }
 
           it 'should be call write_pull_request_template' do
-            expect(cli).to receive(:check_env_vars)
             expect(cli).to receive(:write_pull_request_template)
             expect(cli).to receive(:system).with('hub pull-request --browse')
 
@@ -29,7 +31,6 @@ RSpec.describe PivotalTrackerPr::CLI do
           before { expect(cli).to receive(:get_story_name).with('111').and_return(nil) }
 
           it 'should not to be call write_pull_request_template' do
-            expect(cli).to receive(:check_env_vars)
             expect(cli).to_not receive(:write_pull_request_template)
             expect(cli).to receive(:system).with('hub pull-request --browse')
 
@@ -42,7 +43,6 @@ RSpec.describe PivotalTrackerPr::CLI do
         before { expect(cli).to receive(:parse_story_id).and_return(nil) }
 
         it 'should be only call hub command' do
-          expect(cli).to_not receive(:check_env_vars)
           expect(cli).to_not receive(:get_story_name)
           expect(cli).to receive(:system).with('hub pull-request --browse')
 
