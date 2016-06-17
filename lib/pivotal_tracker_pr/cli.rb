@@ -97,10 +97,10 @@ module PivotalTrackerPr
     end
 
     def default_message(story_id, story_name)
-      <<~EOF
-        [fixed ##{story_id}]#{story_name}
+      <<-EOF
+[fixed ##{story_id}]#{story_name}
 
-        #{story_link story_id}
+#{story_link story_id}
       EOF
     end
 
