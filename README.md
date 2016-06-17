@@ -1,6 +1,4 @@
-# PivotalTrackerPr
-[![Build Status](https://travis-ci.org/blueplanet/pivotal_tracker_pr.svg?branch=master)](https://travis-ci.org/blueplanet/pivotal_tracker_pr)
-[![Code Climate](https://codeclimate.com/github/blueplanet/pivotal_tracker_pr/badges/gpa.svg)](https://codeclimate.com/github/blueplanet/pivotal_tracker_pr)
+# PivotalTrackerPr [![Build Status](https://travis-ci.org/blueplanet/pivotal_tracker_pr.svg?branch=master)](https://travis-ci.org/blueplanet/pivotal_tracker_pr) [![Code Climate](https://codeclimate.com/github/blueplanet/pivotal_tracker_pr/badges/gpa.svg)](https://codeclimate.com/github/blueplanet/pivotal_tracker_pr)
 - `PivotalTracker`のストリーIDとストリー名を取得し、カレントブランチの`PullRequest`を作成する
 
 ## インストール
