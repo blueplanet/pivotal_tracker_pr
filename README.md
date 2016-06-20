@@ -1,4 +1,6 @@
-# PivotalTrackerPr [![Build Status](https://travis-ci.org/blueplanet/pivotal_tracker_pr.svg?branch=master)](https://travis-ci.org/blueplanet/pivotal_tracker_pr) [![Coverage Status](https://coveralls.io/repos/github/blueplanet/pivotal_tracker_pr/badge.svg?branch=master)](https://coveralls.io/github/blueplanet/pivotal_tracker_pr?branch=master) [![Code Climate](https://codeclimate.com/github/blueplanet/pivotal_tracker_pr/badges/gpa.svg)](https://codeclimate.com/github/blueplanet/pivotal_tracker_pr)
+# PivotalTrackerPr [![Gem Version](https://badge.fury.io/rb/pivotal_tracker_pr.svg)](https://badge.fury.io/rb/pivotal_tracker_pr) [![Build Status](https://travis-ci.org/blueplanet/pivotal_tracker_pr.svg?branch=master)](https://travis-ci.org/blueplanet/pivotal_tracker_pr) [![Coverage Status](https://coveralls.io/repos/github/blueplanet/pivotal_tracker_pr/badge.svg?branch=master)](https://coveralls.io/github/blueplanet/pivotal_tracker_pr?branch=master) [![Code Climate](https://codeclimate.com/github/blueplanet/pivotal_tracker_pr/badges/gpa.svg)](https://codeclimate.com/github/blueplanet/pivotal_tracker_pr)
+
+
 - `PivotalTracker`のストリーIDとストリー名を取得し、カレントブランチの`PullRequest`を作成する
 
 ## インストール
