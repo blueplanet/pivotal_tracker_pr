@@ -1,5 +1,6 @@
 require "pivotal_tracker_pr"
 require 'pivotal_tracker_pr/pivotal_tracker_api'
+require 'pivotal_tracker_pr/pull_request_writer'
 require 'json'
 require 'net/http'
 require 'thor'
@@ -18,7 +19,7 @@ module PivotalTrackerPr
         story_name = PivotalTrackerApi.get_story_name(story_id)
         if story_name
           say "Story name : #{story_name}", :green
-          write_pull_request_template story_id, story_name
+          PullRequestWriter.new(story_id, story_name).write
         end
       end
 

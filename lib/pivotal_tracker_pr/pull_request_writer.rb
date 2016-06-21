@@ -8,12 +8,12 @@ module PivotalTrackerPr
       @story_name = story_name
     end
 
-    def write_pull_request_template
+    def write
       message_context =
         if File.exist?(message_template_path)
-          message_from_template(story_id, story_name)
+          message_from_template(@story_id, @story_name)
         else
-          default_message story_id, story_name
+          default_message @story_id, @story_name
         end
 
       open(pull_request_message, 'w') { |file| file.puts message_context }
