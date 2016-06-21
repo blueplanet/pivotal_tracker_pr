@@ -1,4 +1,5 @@
 require "pivotal_tracker_pr"
+require 'pivotal_tracker_pr/pivotal_tracker_api'
 require 'json'
 require 'net/http'
 require 'thor'
@@ -17,7 +18,7 @@ module PivotalTrackerPr
 
         check_env_vars
 
-        story_name = get_story_name(story_id)
+        story_name = PivotalTrackerApi.get_story_name(story_id)
         if story_name
           say "Story name : #{story_name}", :green
           write_pull_request_template story_id, story_name
@@ -33,31 +34,6 @@ module PivotalTrackerPr
       current_branch = `git symbolic-ref --short HEAD`
       current_branch.match(/(\d+)/)
       $1
-    end
-
-    def get_story_name(story_id)
-      url = URI.parse("https://www.pivotaltracker.com/services/v5/projects/#{ENV['PT_PROJECT_ID']}/stories/#{story_id}")
-      https = Net::HTTP.new(url.host, 443)
-      https.use_ssl = true
-      https.open_timeout = 5
-      https.read_timeout = 5
-
-      response = https.get(url.path, 'X-TrackerToken' => ENV['PT_TOKEN'])
-      case response
-      when Net::HTTPSuccess
-        JSON(response.body)['name']
-      else
-        say 'Please check story id for following message:', :red
-        say JSON(response.body)['error'] || response.body, :red
-
-        nil
-      end
-    rescue Timeout::Error
-      say 'Timeout::Error, Please check network', :red
-      nil
-    rescue => e
-      say e.message, :red
-      nil
     end
 
     def check_env_vars
