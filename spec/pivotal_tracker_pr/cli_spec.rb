@@ -52,13 +52,26 @@ RSpec.describe PivotalTrackerPr::CLI do
     end
 
     context 'story_id is present'  do
-      let(:story_id) { '123' }
-      it 'should be call get_story_name && hub command' do
-        expect(PivotalTrackerPr::PivotalTrackerApi).to receive(:get_story_name).with('123').and_return('123 name')
-        expect_any_instance_of(PivotalTrackerPr::PullRequestWriter).to receive(:write)
-        expect(cli).to receive(:system).with('hub pull-request --browse')
+      context 'story_id is number' do
+        let(:story_id) { '123' }
+        it 'should be call get_story_name && hub command' do
+          expect(PivotalTrackerPr::PivotalTrackerApi).to receive(:get_story_name).with('123').and_return('123 name')
+          expect_any_instance_of(PivotalTrackerPr::PullRequestWriter).to receive(:write)
+          expect(cli).to receive(:system).with('hub pull-request --browse')
 
-        subject
+          subject
+        end
+      end
+
+      context 'story_id start with "#"' do
+        let(:story_id) { '#123' }
+        it 'should be call get_story_name && hub command' do
+          expect(PivotalTrackerPr::PivotalTrackerApi).to receive(:get_story_name).with('123').and_return('123 name')
+          expect_any_instance_of(PivotalTrackerPr::PullRequestWriter).to receive(:write)
+          expect(cli).to receive(:system).with('hub pull-request --browse')
+
+          subject
+        end
       end
     end
   end
