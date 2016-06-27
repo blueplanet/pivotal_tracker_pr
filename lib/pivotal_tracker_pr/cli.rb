@@ -10,6 +10,7 @@ module PivotalTrackerPr
     default_command :create
     desc 'create [STORY_ID]', 'Create pull request use story id / story name of PivotalTracker.'
     def create(story_id = nil)
+      story_id = story_id[1..-1] if story_id && story_id[0] == '#'
       story_id ||= parse_story_id
       if story_id
         say "story id : #{story_id}", :green
